@@ -1,0 +1,15 @@
+category,label
+Exotoxin,0
+Stress survival,1
+Biofilm,2
+Immune modulation,3
+Invasion,4
+Adherence,5
+Effector delivery system,6
+Nutritional/Metabolic factor,7
+Motility,8
+Antimicrobial activity/Competitive advantage,9
+Others,10
+Post-translational modification,11
+Exoenzyme,12
+Regulation,13
