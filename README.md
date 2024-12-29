@@ -20,7 +20,7 @@ predict.py -i data/test.fasta -o results/predict_results.txt
 
 ## 4. Web server
 We have released a web service to process gene sequence or predicted ORF using PLM-ARG. You can find the website at http://www.unimd.org/VirulentHunter. VirulentHunter takes the gene sequence as the input and output including both the VFs (if the query was classified as VF) and the corresponding probability.
-## 6. Dependencies
+## 5. Dependencies
 - python 3.8.13
 - pytorch 2.4.1
 - transformers 4.44.2
