@@ -9,22 +9,33 @@ We present VirulentHunter, a novel deep learning framework for simultaneous VF i
 ![pipline](http://119.3.41.228:9090/static/home.png)
 ![pipline](http://119.3.41.228:9090/static/information.png)
 
-
-## 3. Code usage
-
+## 3. Dependencies
+- python 3.8.13
+- pytorch 2.4.1
+- transformers 4.44.2
+- biopython 1.83
+- peft 0.7.1
+## 4. Example usage
 To use the VirulentHunter codes, you first need to download the 'esm2_t30_150M_UR50D' model and put it under the fold of 'models/', and run the following command:
 
 ```python
 predict.py -i data/test.fasta -o results/predict_results.txt
 ```
 
-## 4. Web server
-We have released a web service to process gene sequence or predicted ORF using PLM-ARG. You can find the website at http://www.unimd.org/VirulentHunter. VirulentHunter takes the gene sequence as the input and output including both the VFs (if the query was classified as VF) and the corresponding probability.
-## 5. Dependencies
-- python 3.8.13
-- pytorch 2.4.1
-- transformers 4.44.2
-- biopython 1.83
+## 5. Training and Analyzing Custom
+- Binary task: 
+```python
+python main.py --esm_path models/esm2_t30_150M_UR50D --input_fasta_path data/binary/ --input_label_path data/binary/ --max_len 2000
+```
+- VF category task:
+```python
+python main_multi_label.py --esm_path models/esm2_t30_150M_UR50D --input_fasta_path data/multi-label/train.fasta --input_label_path data/multi-label/train_labels.pkl --max_len 2000
+```
+
+
+## 6. Web server
+We are pleased to announce the launch of our web service, VirulentHunter, designed for the identification and prediction of virulence factors (VFs). The platform supports the input of protein sequences, strain genomes, and metagenomic data. VirulentHunter analyzes the input data and provides detailed outputs, including the identified virulence factors (if the query is classified as a VF) and their corresponding prediction probabilities. Visit the website at http://www.unimd.org/VirulentHunter to explore its capabilities. For users with large-scale data prediction needs, we recommend deploying a local version of the service to ensure efficient and customized processing.
+
 ### References
 [1] B. Liu, D. Zheng, S. Zhou, L. Chen, and J. Yang, “VFDB 2022: a general classification scheme for bacterial virulence factors,” Nucleic Acids Research, vol. 50, no. D1, p. D912, Jan. 2022, doi: 10.1093/nar/gkab1107.
 

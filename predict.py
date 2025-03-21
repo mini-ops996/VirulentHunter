@@ -20,11 +20,11 @@ def main():
 
     parser.add_argument('--ft_model_path', default='models/binary/',
                         help='the fine turn model')
-    parser.add_argument('--catogery_model_path', default='models/category/')
+    parser.add_argument('--catogery_model_path', default='models/multi-label/')
     parser.add_argument('-i','--input_fasta_path', default='data/test.fasta', 
                         help='the input fasta and label file path.')
     parser.add_argument('-o','--output_path', default='results/', help='the predict results to save')
-    parser.add_argument('--max_len', default=1000, help='protein sequence length')
+    parser.add_argument('--max_len', default=2000, help='protein sequence length')
 
     args = parser.parse_args()
     print(args)
@@ -41,7 +41,7 @@ def predict(base_esm_path, ft_model_path, catogery_model_path,
     binary_model       = PeftModel.from_pretrained(base_esm_model, ft_model_path)
     binary_model.eval()
     
-    device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')  
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')  
     binary_model.to(device)
 
     label_info = pd.read_csv('data/labels.csv')
