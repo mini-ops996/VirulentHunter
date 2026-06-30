@@ -6,6 +6,9 @@ from transformers import (
     AutoTokenizer,
     AutoModelForSequenceClassification,
 )
+from transformers import logging
+logging.set_verbosity_error() 
+
 from peft import PeftModel
 from Bio import SeqIO
 import torch

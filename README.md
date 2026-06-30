@@ -16,20 +16,30 @@ We present VirulentHunter, a novel deep learning framework for simultaneous VF i
 - biopython 1.83
 - peft 0.7.1
 ## 4. Example usage
-To use the VirulentHunter codes, you first need to download the 'esm2_t30_150M_UR50D' model and put it under the fold of 'models/', and run the following command:
 
-```python
-predict.py -i data/test.fasta -o results/predict_results.txt
+### Option 1: Use online model from Hugging Face (Recommended)
+Simply specify the model name with --base_esm_path, and it will be automatically downloaded and cached:
 ```
+python predict.py --base_esm_path facebook/esm2_t30_150M_UR50D -i data/test.fasta -o results/
+```
+### Option 2: Use a local model
+If you prefer offline usage or want to avoid repeated downloads, you can download the model locally first:
+
+- Download the ['esm2_t30_150M_UR50D'](https://huggingface.co/facebook/esm2_t30_150M_UR50D/tree/main) model and place it in the models/ folder
+- Run the command (default path is models/esm2_t30_150M_UR50D):
+```
+python predict.py -i data/test.fasta -o results/
+```
+
 
 ## 5. Training and Analyzing Custom
 - Binary task: 
 ```python
-python main.py --esm_path models/esm2_t30_150M_UR50D --input_fasta_path data/binary/ --input_label_path data/binary/ --max_len 2000
+python main.py --esm_path facebook/esm2_t30_150M_UR50D --input_fasta_path data/binary/ --input_label_path data/binary/ --max_len 2000
 ```
 - VF category task:
 ```python
-python main_multi_label.py --esm_path models/esm2_t30_150M_UR50D --input_fasta_path data/multi-label/train.fasta --input_label_path data/multi-label/train_labels.pkl --max_len 2000
+python main_multi_label.py --esm_path facebook/esm2_t30_150M_UR50D --input_fasta_path data/multi-label/train.fasta --input_label_path data/multi-label/train_labels.pkl --max_len 2000
 ```
 
 

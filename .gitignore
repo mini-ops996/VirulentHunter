@@ -1,2 +1,4 @@
 VirulentHunter.code-workspace
 results/predict_results.csv
+*.pyc
+__pycache__/
