@@ -1,0 +1,16 @@
+services:
+  virulenthunter:
+    image: dwalke/virulenthunter:latest
+    container_name: virulenthunter
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    volumes:
+      - ./data:/app/data
+      - ./results:/app/results
+    entrypoint: /bin/bash
+    command: -c "tail -f /dev/null"
